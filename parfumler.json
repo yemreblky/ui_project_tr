@@ -1,0 +1,17 @@
+{
+  "Adana": {
+    "isim": "Adana Sıcağı",
+    "resim": "img/parfum1.jpg",
+    "aciklama": "Portakal çiçeği ve baharatın yoğun harmanı."
+  },
+  "İstanbul": {
+    "isim": "Boğaz Esintisi",
+    "resim": "img/parfum1.jpg",
+    "aciklama": "Erguvanlar ve deniz tuzunun eşsiz uyumu."
+  },
+  "İzmir": {
+    "isim": "Ege Rüzgarı",
+    "resim": "img/parfum1.jpg",
+    "aciklama": "İncir yaprağı ve narenciye ferahlığı."
+  }
+}

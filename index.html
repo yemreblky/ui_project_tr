@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Art of Scent | Giriş</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>ART OF SCENT</h2>
+
+    <div class="tabs">
+        <button onclick="switchTab('login', this)" class="active">Giriş Yap</button>
+        <button onclick="switchTab('register', this)">Kayıt Ol</button>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+        <input type="text" id="loginUser" placeholder="Kullanıcı Adı">
+        <input type="password" id="loginPw" placeholder="Şifre">
+        <button type="submit">Giriş Yap</button>
+    </form>
+
+    <form id="registerForm" onsubmit="handleRegister(event)">
+        <input type="text" id="regUser" placeholder="Kullanıcı Adı">
+        <input type="password" id="regPw" placeholder="Şifre">
+        <input type="password" id="regPw2" placeholder="Şifre Tekrar">
+        <button type="submit">Kayıt Ol</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('registerForm').style.display = 'none';
+
+    function switchTab(tab, btn) {
+        document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('loginForm').style.display = tab === 'login' ? 'flex' : 'none';
+        document.getElementById('registerForm').style.display = tab === 'register' ? 'flex' : 'none';
+    }
+
+    function handleLogin(e) {
+        e.preventDefault();
+        if (!loginUser.value || !loginPw.value) { alert('Lütfen tüm alanları doldurun.'); return; }
+        sessionStorage.setItem('authMessage', 'Başarıyla giriş yapıldı!');
+        window.location.href = 'map.html';
+    }
+
+    function handleRegister(e) {
+        e.preventDefault();
+        if (!regUser.value || !regPw.value || !regPw2.value) { alert('Lütfen tüm alanları doldurun.'); return; }
+        if (regPw.value !== regPw2.value) { alert('Şifreler eşleşmiyor.'); return; }
+        sessionStorage.setItem('authMessage', 'Başarıyla kayıt olundu!');
+        window.location.href = 'map.html';
+    }
+</script>
+
+</body>
+</html>

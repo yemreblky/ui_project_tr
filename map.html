@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of Scent | Koku Haritası</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div id="auth-popup" class="auth-popup">
+        <span id="auth-popup-text"></span>
+    </div>
+
+    <div class="map-container">
+        <header class="header">
+            <div class="logo">ART OF SCENT</div>
+            <h1>Şehrini Seç, Kokunu Bul</h1>
+            <p>81 ilin her biri, koku piramidindeki bir şişeyi temsil eder.</p>
+        </header>
+
+        <div id="map-wrapper"></div>
+
+        <div id="tooltip" class="tooltip"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        const msg = sessionStorage.getItem('authMessage');
+        if (msg) {
+            const popup = document.getElementById('auth-popup');
+            document.getElementById('auth-popup-text').textContent = msg;
+            popup.classList.add('show');
+            sessionStorage.removeItem('authMessage');
+            setTimeout(() => popup.classList.remove('show'), 3500);
+        }
+    </script>
+</body>
+</html>

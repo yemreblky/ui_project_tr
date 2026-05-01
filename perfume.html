@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art of Scent | Parfüm Detayı</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- HTML İskeleti: innerHTML yerine bu elementlerin içini dolduracağız -->
+    <div class="perfume-container" id="perfume-card">
+        <div class="perfume-image-box">
+            <img id="p-resim" src="" alt="Parfüm Resmi" style="display:none;">
+        </div>
+        <div class="perfume-info-box">
+            <span class="city-badge" id="p-badge"></span>
+            <h1 id="p-isim"></h1>
+            <p id="p-aciklama"></p>
+            <a href="map.html" class="back-btn">Haritaya Geri Dön</a>
+        </div>
+    </div>
+
+    <script>
+        // URL'den gelen şehir parametresini al
+        let urlParams = new URLSearchParams(window.location.search);
+        let sehirAdi = urlParams.get('sehir'); 
+
+        if (sehirAdi !== null) {
+            // JSON dosyasından verileri çek
+            fetch('parfumler.json')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(data) {
+                    // Şehri anahtar (key) olarak ara
+                    let secilenParfum = data[sehirAdi];
+
+                    // Gerekli HTML elementlerini seç
+                    let imgElement = document.getElementById('p-resim');
+                    let isimElement = document.getElementById('p-isim');
+                    let aciklamaElement = document.getElementById('p-aciklama');
+                    let badgeElement = document.getElementById('p-badge');
+
+                    if (secilenParfum !== undefined) {
+                        // Şehir bulunduysa verileri yerleştir
+                        imgElement.src = secilenParfum.resim;
+                        imgElement.alt = secilenParfum.isim;
+                        imgElement.style.display = "block";
+
+                        isimElement.textContent = secilenParfum.isim;
+                        aciklamaElement.textContent = secilenParfum.aciklama;
+                        badgeElement.textContent = sehirAdi + " İlinin İmza Kokusu";
+                    } 
+                })
+                
+        }
+    </script>
+</body>
+</html>
